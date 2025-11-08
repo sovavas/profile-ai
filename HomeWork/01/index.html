@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Портфолио профессионального фотографа Василия Иванова. Портретная, свадебная и коммерческая съемка.">
+    <title>Фотограф Василий Иванов | Портфолио</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Общие стили */
+        :root {
+            --primary-color: #000;
+            --secondary-color: #fff;
+            --accent-color: #d4af37;
+            --text-color: #333;
+            --light-gray: #f8f8f8;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', Arial, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 100px 0;
+        }
+
+        p {
+            font-weight: 300;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: transparent;
+            color: var(--secondary-color);
+            border: 1px solid var(--secondary-color);
+            text-decoration: none;
+            font-weight: 300;
+            letter-spacing: 1px;
+            transition: var(--transition);
+            cursor: pointer;
+            border-radius: 2px;
+        }
+
+        .btn:hover, .btn:focus {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn:focus {
+            outline: 2px dashed var(--accent-color);
+            outline-offset: 2px;
+        }
+
+        /* Шапка */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 30px 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            padding: 15px 0;
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            color: var(--secondary-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        header.scrolled .logo {
+            color: var(--primary-color);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 40px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--secondary-color);
+            font-weight: 300;
+            letter-spacing: 1px;
+            transition: var(--transition);
+            position: relative;
+            font-size: 14px;
+            padding: 5px 0;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--secondary-color);
+            transition: var(--transition);
+        }
+
+        header.scrolled nav ul li a {
+            color: var(--primary-color);
+        }
+
+        header.scrolled nav ul li a::after {
+            background-color: var(--primary-color);
+        }
+
+        nav ul li a:hover, 
+        nav ul li a:focus,
+        nav ul li a.active {
+            color: var(--accent-color);
+        }
+
+        nav ul li a:hover::after, 
+        nav ul li a:focus::after,
+        nav ul li a.active::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--secondary-color);
+            transition: var(--transition);
+        }
+
+        header.scrolled .mobile-menu-btn {
+            color: var(--primary-color);
+        }
+
+        /* Герой-секция */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--secondary-color);
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1493863641943-9b68992a8d07?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1658&q=80') no-repeat center center/cover;
+            z-index: -1;
+            filter: brightness(0.7);
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 0 20px;
+            animation: fadeIn 1.5s ease;
+        }
+
+        .hero h1 {
+            font-size: 64px;
+            margin-bottom: 20px;
+            letter-spacing: 5px;
+            font-weight: 700;
+        }
+
+        .hero .slogan {
+            font-size: 24px;
+            margin-bottom: 15px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            color: #f0f0f0;
+        }
+
+        .hero .subtitle {
+            font-size: 18px;
+            margin-bottom: 40px;
+            font-weight: 300;
+            letter-spacing: 1px;
+            color: #e0e0e0;
+        }
+
+        /* Секция "Избранные работы" */
+        .portfolio {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            font-size: 28px;
+            letter-spacing: 3px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 2px;
+            background: var(--accent-color);
+            margin: 15px auto 0;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 1 / 1.2;
+            cursor: pointer;
+            border-radius: 4px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+            display: block;
+        }
+
+        .portfolio-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        .portfolio-overlay h3 {
+            color: var(--secondary-color);
+            font-size: 18px;
+            text-align: center;
+            letter-spacing: 2px;
+            font-weight: 500;
+            padding: 0 20px;
+            transform: translateY(20px);
+            transition: transform 0.5s ease;
+        }
+
+        .portfolio-item:hover .portfolio-overlay h3 {
+            transform: translateY(0);
+        }
+
+        /* Секция "Обо мне" */
+        .about {
+            background-color: var(--light-gray);
+            padding: 120px 0;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-content h2 {
+            margin-bottom: 40px;
+            font-size: 28px;
+            letter-spacing: 3px;
+        }
+
+        .about-content p {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            color: #555;
+        }
+
+        /* Секция "Услуги" */
+        .services {
+            padding: 120px 0;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 60px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .service-item {
+            text-align: center;
+            padding: 40px 20px;
+            border-radius: 8px;
+            transition: var(--transition);
+            background: var(--secondary-color);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .service-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-icon {
+            font-size: 40px;
+            margin-bottom: 30px;
+            color: var(--accent-color);
+            transition: var(--transition);
+        }
+
+        .service-item:hover .service-icon {
+            transform: scale(1.1);
+        }
+
+        .service-item h3 {
+            margin-bottom: 20px;
+            font-size: 20px;
+            letter-spacing: 2px;
+        }
+
+        .service-item p {
+            font-size: 15px;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* Секция "Контакты" */
+        .contact {
+            background-color: var(--light-gray);
+            padding: 120px 0;
+            text-align: center;
+        }
+
+        .contact-info {
+            margin-bottom: 40px;
+        }
+
+        .contact-info p {
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: #555;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 18px;
+        }
+
+        .social-links a:hover, .social-links a:focus {
+            background-color: var(--accent-color);
+            transform: translateY(-5px);
+        }
+
+        .social-links a:focus {
+            outline: 2px dashed var(--accent-color);
+            outline-offset: 2px;
+        }
+
+        /* Футер */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            padding: 60px 0 30px;
+            text-align: center;
+        }
+
+        .footer-content {
+            margin-bottom: 30px;
+        }
+
+        .copyright {
+            font-size: 14px;
+            color: #aaa;
+            letter-spacing: 1px;
+        }
+
+        /* Анимации */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Адаптивность */
+        @media (max-width: 992px) {
+            .portfolio-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .hero h1 {
+                font-size: 48px;
+            }
+            
+            .hero .slogan {
+                font-size: 20px;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                position: relative;
+            }
+            
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: var(--secondary-color);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+                border-radius: 0 0 8px 8px;
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 15px 0;
+            }
+            
+            nav ul li a {
+                color: var(--primary-color);
+                display: block;
+                padding: 10px 0;
+            }
+            
+            nav ul li a::after {
+                background-color: var(--primary-color);
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                z-index: 1001;
+            }
+            
+            .section-title {
+                font-size: 24px;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+                letter-spacing: 3px;
+            }
+            
+            .hero .slogan {
+                font-size: 18px;
+            }
+            
+            .hero .subtitle {
+                font-size: 16px;
+            }
+            
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .services-grid {
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 28px;
+            }
+            
+            .hero .slogan {
+                font-size: 16px;
+            }
+            
+            .hero .subtitle {
+                font-size: 14px;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+            
+            .section-title {
+                font-size: 22px;
+            }
+            
+            .service-item {
+                padding: 30px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка -->
+    <header id="header">
+        <div class="container header-container">
+            <a href="#home" class="logo">ФОТОГРАФ</a>
+            <button class="mobile-menu-btn" aria-label="Открыть меню">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul id="main-menu">
+                    <li><a href="#home" aria-label="Главная">ГЛАВНАЯ</a></li>
+                    <li><a href="#portfolio" aria-label="Портфолио">РАБОТЫ</a></li>
+                    <li><a href="#about" aria-label="Обо мне">ОБО МНЕ</a></li>
+                    <li><a href="#services" aria-label="Услуги">УСЛУГИ</a></li>
+                    <li><a href="#contact" aria-label="Контакты">КОНТАКТЫ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Герой-секция -->
+    <section class="hero" id="home" aria-labelledby="hero-title">
+        <div class="hero-bg" role="img" aria-label="Фоновое изображение: пейзаж с горами"></div>
+        <div class="hero-content">
+            <h1 id="hero-title">ВАСИЛИЙ ИВАНОВ</h1>
+            <p class="slogan">Создаю эмоции через кадр</p>
+            <p class="subtitle">Исследуйте мир вдохновляющей фотографии</p>
+            <a href="#portfolio" class="btn" aria-label="Посмотреть портфолио">СМОТРЕТЬ РАБОТЫ</a>
+        </div>
+    </section>
+
+    <!-- Секция "Избранные работы" -->
+    <section class="portfolio" id="portfolio" aria-labelledby="portfolio-title">
+        <div class="container">
+            <h2 class="section-title" id="portfolio-title">ИЗБРАННЫЕ РАБОТЫ</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1516726817505-f5ed825624d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1287&q=80" alt="Эмоциональный портрет женщины">
+                    <div class="portfolio-overlay">
+                        <h3>ЭМОЦИОНАЛЬНЫЙ ПОРТРЕТ</h3>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1513584684374-8bab748fbf90?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1465&q=80" alt="Архитектурная абстракция городского здания">
+                    <div class="portfolio-overlay">
+                        <h3>АРХИТЕКТУРНАЯ АБСТРАКЦИЯ</h3>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1580651214613-f4692d6d138f?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80" alt="Фэшн-фотография модели в красном платье">
+                    <div class="portfolio-overlay">
+                        <h3>ФЭШН-ФОТОГРАФИЯ</h3>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1552058544-f2b08422138a?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80" alt="Черно-белый портрет пожилого мужчины">
+                    <div class="portfolio-overlay">
+                        <h3>ЧЕРНО-БЕЛЫЙ ПОРТРЕТ</h3>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1511988617509-a57c8a288659?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1287&q=80" alt="Свадебный момент обмена кольцами">
+                    <div class="portfolio-overlay">
+                        <h3>СВАДЕБНЫЙ МОМЕНТ</h3>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1287&q=80" alt="Художественный портрет девушки с цветами">
+                    <div class="portfolio-overlay">
+                        <h3>ХУДОЖЕСТВЕННЫЙ ПОРТРЕТ</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция "Обо мне" -->
+    <section class="about" id="about" aria-labelledby="about-title">
+        <div class="container">
+            <div class="about-content">
+                <h2 class="section-title" id="about-title">ОБО МНЕ</h2>
+                <p>Я профессиональный фотограф с более чем 10-летним опытом работы в различных жанрах фотографии. Моя страсть — запечатлевать моменты, которые рассказывают истории и вызывают эмоции.</p>
+                <p>Специализируюсь на портретной, свадебной и коммерческой фотографии. Работала с известными брендами и публиковалась в ведущих журналах.</p>
+                <p>Мой подход — создание естественных, эмоциональных и художественных снимков, которые будут радовать вас долгие годы.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция "Услуги" -->
+    <section class="services" id="services" aria-labelledby="services-title">
+        <div class="container">
+            <h2 class="section-title" id="services-title">УСЛУГИ</h2>
+            <div class="services-grid">
+                <div class="service-item">
+                    <div class="service-icon">
+                        <i class="fas fa-camera" aria-hidden="true"></i>
+                    </div>
+                    <h3>ПОРТРЕТНАЯ СЪЕМКА</h3>
+                    <p>Индивидуальные и семейные портреты в студии или на природе. Создание естественных и эмоциональных образов.</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">
+                        <i class="fas fa-ring" aria-hidden="true"></i>
+                    </div>
+                    <h3>СВАДЕБНАЯ ФОТОГРАФИЯ</h3>
+                    <p>Полное сопровождение вашего особенного дня от подготовки до банкета. Естественные и искренние кадры.</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">
+                        <i class="fas fa-building" aria-hidden="true"></i>
+                    </div>
+                    <h3>КОММЕРЧЕСКАЯ СЪЕМКА</h3>
+                    <p>Фотографии для брендов, каталогов и рекламных кампаний. Профессиональный подход к бизнес-фотографии.</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">
+                        <i class="fas fa-mountain" aria-hidden="true"></i>
+                    </div>
+                    <h3>ПЕЙЗАЖНАЯ ФОТОГРАФИЯ</h3>
+                    <p>Захватывающие природные ландшафты в разное время суток. Искусство запечатления красоты природы.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция "Контакты" -->
+    <section class="contact" id="contact" aria-labelledby="contact-title">
+        <div class="container">
+            <h2 class="section-title" id="contact-title">КОНТАКТЫ</h2>
+            <div class="contact-info">
+                <p>EMAIL: HELLO@PHOTOGRAPHER.COM</p>
+                <p>ТЕЛЕФОН: +7 (999) 123-45-67</p>
+            </div>
+            <div class="social-links">
+                <a href="#" aria-label="Instagram">
+                    <i class="fab fa-instagram" aria-hidden="true"></i>
+                </a>
+                <a href="#" aria-label="WhatsApp">
+                    <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                </a>
+                <a href="#" aria-label="Telegram">
+                    <i class="fab fa-telegram" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p>© 2023 ФОТОГРАФ ВАСИЛИЙ ИВАНОВ. ВСЕ ПРАВА ЗАЩИЩЕНЫ.</p>
+            </div>
+            <div class="copyright">
+                <p>САЙТ СОЗДАН С ЛЮБОВЬЮ К ИСКУССТВУ ФОТОГРАФИИ</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Плавная прокрутка для навигационных ссылок
+        document.querySelectorAll('nav a, .btn').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+                
+                // Закрыть мобильное меню после клика
+                document.getElementById('main-menu').classList.remove('show');
+                
+                // Обновить активную ссылку
+                updateActiveLink(targetId);
+            });
+        });
+
+        // Изменение шапки при прокрутке
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+            
+            // Обновление активной ссылки при прокрутке
+            updateActiveLinkOnScroll();
+        });
+
+        // Мобильное меню
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navMenu = document.getElementById('main-menu');
+
+        mobileMenuBtn.addEventListener('click', function() {
+            navMenu.classList.toggle('show');
+            // Изменить иконку при открытии/закрытии меню
+            const icon = mobileMenuBtn.querySelector('i');
+            if (navMenu.classList.contains('show')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+                mobileMenuBtn.setAttribute('aria-label', 'Закрыть меню');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+                mobileMenuBtn.setAttribute('aria-label', 'Открыть меню');
+            }
+        });
+
+        // Обновление активной ссылки в навигации
+        function updateActiveLink(targetId) {
+            // Убрать класс active у всех ссылок
+            document.querySelectorAll('nav a').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Добавить класс active для текущей ссылки
+            const activeLink = document.querySelector(`nav a[href="${targetId}"]`);
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
+        }
+
+        // Обновление активной ссылки при прокрутке
+        function updateActiveLinkOnScroll() {
+            const sections = document.querySelectorAll('section');
+            const scrollPos = window.scrollY + 100;
+            
+            sections.forEach(section => {
+                const top = section.offsetTop;
+                const bottom = top + section.offsetHeight;
+                const id = section.getAttribute('id');
+                
+                if (scrollPos >= top && scrollPos <= bottom) {
+                    updateActiveLink(`#${id}`);
+                }
+            });
+        }
+
+        // Инициализация активной ссылки при загрузке страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            updateActiveLinkOnScroll();
+        });
+    </script>
+</body>
+</html>
